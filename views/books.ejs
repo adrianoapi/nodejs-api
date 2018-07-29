@@ -1,0 +1,23 @@
+
+<h1>Books</h1>
+
+<ul>
+  <% books.forEach(function(book){ %>
+    <li><%= book.title %></li>
+  <% }) %>
+</ul>
+
+<div id="result"></div>
+
+<script>
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '/api/books/5b5bb7f68f2ad7496bf2f3a3')
+xhr.send();
+
+xhr.onreadystatechange = () => {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    document.getElementById('result').innerHTML = xhr.responseText
+  }
+}
+
+</script>
