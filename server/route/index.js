@@ -1,8 +1,9 @@
 //server/route/index.js
-const express = require('express')
-const route = express.Router();
-const MainController = require('../controller/MainController');
-const BookController = require('../controller/BookController');
+const express          = require('express')
+const route            = express.Router();
+const NoteController   = require('../controller/NoteController'  );
+const MainController   = require('../controller/MainController'  );
+const BookController   = require('../controller/BookController'  );
 const AuthorController = require('../controller/AuthorController');
 
 const UserRepository = require('../repository/UserRepository');
@@ -25,11 +26,17 @@ const ensureAuth = (request, response, next) => {
     .catch(e => next(err))
 }
 
-route.get('/api/authors', ensureAuth, AuthorController.list)
-route.get('/api/authors/:id', ensureAuth, AuthorController.getById)
-route.post('/api/authors', ensureAuth, AuthorController.create)
-route.put('/api/authors/:id', ensureAuth, AuthorController.update)
-route.delete('/api/authors/:id', ensureAuth, AuthorController.delete)
+route.get   ('/api/notes',     NoteController.list   );
+route.get   ('/api/notes/:id', NoteController.getById);
+route.post  ('/api/notes',     NoteController.create );
+route.put   ('/api/notes/:id', NoteController.update );
+route.delete('/api/notes/:id', NoteController.delete );
+
+route.get   ('/api/authors',     ensureAuth, AuthorController.list   )
+route.get   ('/api/authors/:id', ensureAuth, AuthorController.getById)
+route.post  ('/api/authors',     ensureAuth, AuthorController.create )
+route.put   ('/api/authors/:id', ensureAuth, AuthorController.update )
+route.delete('/api/authors/:id', ensureAuth, AuthorController.delete )
 
 
 route.get('/', MainController.getHome);

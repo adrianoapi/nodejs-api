@@ -5,8 +5,7 @@
   "main": "hello.js",
   "scripts": {
     "start": "nodemon server/bin/www.js",
-    "test": "export NODE_ENV=test&& nyc mocha test/* --exit",
-    "win-test": "set NODE_ENV=test&& nyc mocha test/* --exit"
+    "test": "set NODE_ENV=test&& nyc mocha test/* --exit"
   },
   "keywords": [],
   "author": "William Bruno <wbrunom@gmail.com> (http://wbruno.com.br)",
